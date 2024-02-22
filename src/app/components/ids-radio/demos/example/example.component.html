@@ -1,0 +1,68 @@
+<ids-container padding="8" hidden>
+  <ids-theme-switcher mode="light"></ids-theme-switcher>
+  
+  <ids-layout-grid cols="3" gap="md" padding="md">
+    <ids-text font-size="12" type="h1">Ids Radio</ids-text>
+  </ids-layout-grid>
+
+  <ids-layout-grid cols="3" gap="md" padding-x="md">
+    <ids-layout-grid-cell>
+      <ids-radio-group label="Normal">
+        <ids-radio value="opt1" label="Option one"></ids-radio>
+        <ids-radio value="opt2" label="Option two" checked="true"></ids-radio>
+      </ids-radio-group>
+
+      <ids-radio-group label="Disabled Group" disabled="true">
+        <ids-radio value="opt1" label="Option one" checked="true"></ids-radio>
+        <ids-radio value="opt2" label="Option two"></ids-radio>
+      </ids-radio-group>
+
+      <ids-radio-group label="Disabled Item">
+        <ids-radio value="opt1" label="Option one"></ids-radio>
+        <ids-radio value="opt2" label="Option two" checked="true"></ids-radio>
+        <ids-radio value="opt3" label="Option three" disabled="true"></ids-radio>
+      </ids-radio-group>
+    </ids-layout-grid-cell>
+    <ids-layout-grid-cell>
+      <ids-radio-group label="Set Group Checked and Value" value="opt1">
+        <ids-radio value="opt1" label="Option one"></ids-radio>
+        <ids-radio value="opt2" label="Option two"></ids-radio>
+      </ids-radio-group>
+
+      <ids-radio-group label="Colored Radios">
+        <ids-radio color="emerald" value="emerald" label="Emerald"></ids-radio>
+        <ids-radio color="amethyst" value="amethyst" label="Amethyst"></ids-radio>
+        <ids-radio color="azure" value="azure" label="Azure"></ids-radio>
+        <ids-radio color="amber" value="amber" label="Amber" checked="true"></ids-radio>
+        <ids-radio color="ruby" value="ruby" label="Ruby"></ids-radio>
+        <ids-radio color="ruby" value="ruby" label="Colored (disabled)" disabled="true"></ids-radio>
+        <ids-radio color="amber" value="caution" label="Caution"></ids-radio>
+      </ids-radio-group>
+
+    </ids-layout-grid-cell>
+    <ids-layout-grid-cell>
+      <ids-radio-group 
+        #validatedRadioGroupRef
+        label="Radio with Validation" 
+        validate="required" 
+        id="ids-radio-validation">
+        <ids-radio value="opt1" label="Option one"></ids-radio>
+        <ids-radio value="opt2" label="Option two"></ids-radio>
+        <ids-radio value="opt3" label="Option three" disabled="true"></ids-radio>
+      </ids-radio-group>
+      <ids-button appearance="secondary" id="btn-radio-clear" (click)="clearRadioGroupValidation()">
+        <span>Clear</span>
+      </ids-button>
+      <ids-button appearance="secondary" id="btn-radio-validate" (click)="validateRadioGroup()">
+        <span>Validate</span>
+      </ids-button>
+
+      <br/><br/>
+      <ids-radio-group label="Horizontal Radio" horizontal="true" validate="required">
+        <ids-radio value="opt1" label="Option one"></ids-radio>
+        <ids-radio value="opt2" label="Option two" checked="true"></ids-radio>
+        <ids-radio value="opt3" label="Option three" disabled="true"></ids-radio>
+      </ids-radio-group>
+    </ids-layout-grid-cell>
+  </ids-layout-grid>
+</ids-container>

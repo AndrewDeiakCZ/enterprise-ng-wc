@@ -1,0 +1,40 @@
+<ids-container padding="8" hidden>
+  <ids-theme-switcher mode="light"></ids-theme-switcher>
+
+  <ids-modal #modal id="my-modal" aria-labelledby="my-modal-title">
+    <ids-text slot="title" font-size="24" type="h2" id="my-modal-title">IDS Focus Capture Demo</ids-text>
+
+    <ids-text font-size="14">Use the <kbd>Tab</kbd> and <kbd>Shift+Tab</kbd> keystrokes to change element focus. Use the checkboxes below to change focus behavior.</ids-text>
+    <br>
+    <ids-checkbox
+      #settingCaptureCheck
+      id="setting-capture"
+      label="Capture Focus"
+      checked
+      (change)="handleSettingCaptureChange($event)"></ids-checkbox>
+    <ids-checkbox
+      #settingCycleCheck
+      id="setting-cycle"
+      label="Cycle Focus"
+      checked
+      (change)="handleSettingCycleChange($event)"></ids-checkbox>
+
+    <ids-modal-button slot="buttons" id="modal-cancel-btn" appearance="secondary" cancel>
+      <span>Cancel</span>
+    </ids-modal-button>
+    <ids-modal-button slot="buttons" id="modal-save-btn" appearance="primary">
+      <span>Save</span>
+    </ids-modal-button>
+  </ids-modal>
+
+  <ids-layout-grid auto-fit="true" padding="md">
+    <ids-text font-size="12" type="h1">Focus Capture Demo</ids-text>
+  </ids-layout-grid>
+  <ids-layout-grid auto-fit="true" padding="md">
+    <ids-layout-grid-cell>
+      <ids-button (click)="handleShow()" id="modal-trigger-btn" appearance="secondary">
+        <span>Observe Focus Capture Behavior</span>
+      </ids-button>
+    </ids-layout-grid-cell>
+  </ids-layout-grid>
+</ids-container>

@@ -1,0 +1,53 @@
+<ids-container padding="8" hidden>
+  <ids-theme-switcher mode="light"></ids-theme-switcher>
+  
+  <ids-layout-grid auto-fit="true" padding="md">
+    <ids-text font-size="12" type="h1">Menu</ids-text>
+  </ids-layout-grid>
+
+  <ids-layout-grid auto-fit="true" padding="md">
+    <ids-layout-grid-cell>
+
+      <ids-menu id="simple-menu" (selected)="onSelected($event)">
+        <ids-menu-group>
+          <ids-menu-item
+            *ngFor="let item of menuData$ | async"
+            [attr.value]="item.value">
+            {{ item.label }}
+          </ids-menu-item>
+        </ids-menu-group>
+      </ids-menu>
+
+    </ids-layout-grid-cell>
+
+    <ids-layout-grid-cell>
+
+      <ids-menu (selected)="onSelected($event)" (beforeselected)="onBeforeSelected($event)">
+        <ng-container *ngFor="let group of menuIconsData$ | async; let last = last">
+
+          <!-- if type is group -->
+          <ids-menu-group *ngIf="group.type === 'group'">
+            <ng-container *ngFor="let item of group.menuItems">
+              <ids-menu-item
+                *ngIf="item.type !== 'separator'"
+                [attr.value]="item.value"
+                [disabled]="item.disabled"
+                [icon]="item.icon">
+                {{ item.label }}
+              </ids-menu-item>
+
+              <ids-separator *ngIf="item.type === 'separator'"></ids-separator>
+            </ng-container>
+          </ids-menu-group>
+
+          <!-- if type is header -->
+          <ids-menu-header *ngIf="group.type === 'header'">{{ group.label }}</ids-menu-header>            
+
+          <!-- if type if separator -->
+          <ids-separator *ngIf="group.type === 'separator'"></ids-separator>
+        </ng-container>
+      </ids-menu>
+
+    </ids-layout-grid-cell>
+  </ids-layout-grid>
+</ids-container>

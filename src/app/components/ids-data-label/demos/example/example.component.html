@@ -1,0 +1,22 @@
+<ids-container padding="8" hidden>
+  <ids-theme-switcher mode="light"></ids-theme-switcher>
+  
+  <ids-layout-grid auto-fit="true" padding="md">
+    <ids-layout-grid-cell>
+      <ids-text font-size="12" type="h1">Data Label</ids-text>
+    </ids-layout-grid-cell>
+  </ids-layout-grid>
+  <ids-layout-grid auto-fit="true" id="ids-data-label-list" gap="md">
+    
+    <!-- LabelPosition needs to be set first -->
+    <ids-data-label 
+      #dataLabelLabelLeft
+      label-position="left" 
+      label="Shipping to"
+    >
+      Los Angeles, California 90001 USA
+    </ids-data-label>
+
+    <ids-data-label label="Shipping to">Los Angeles, California 90001 USA</ids-data-label>
+  </ids-layout-grid>
+</ids-container>
