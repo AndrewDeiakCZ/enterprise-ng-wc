@@ -11,8 +11,14 @@ import 'ids-enterprise-wc/enterprise-wc.js';
 })
 export class AppComponent {
   public name = 'Angular ' + VERSION.major;
+
+  list = Array.from({ length: 25 }, (_, index) => "item" + (index + 1));
   
   constructor(
     private router: Router
   ) {}
+
+  itemClick(): void {
+    this.list = this.list.splice(10);
+  }
 }
