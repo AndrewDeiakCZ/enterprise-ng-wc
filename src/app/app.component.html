@@ -12,9 +12,9 @@
     trigger="click"
     max-height="600px"
     >
-      <ng-container *ngFor="let item of list">
-        <ids-menu-item (click)="itemClick()">{{item}}</ids-menu-item>
-      </ng-container>
+        @for (item of list; track item) {
+            <ids-menu-item (click)="itemClick()">{{item}}</ids-menu-item>
+        }
     </ids-popup-menu>
 </div>
 
