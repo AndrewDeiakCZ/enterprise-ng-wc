@@ -2,6 +2,17 @@ import {AfterViewInit, Component, ElementRef, VERSION, ViewChild} from '@angular
 import { Router } from '@angular/router'
 import 'ids-enterprise-wc/enterprise-wc.js';
 
+export enum StatusFilterValues {
+  Draft = 'DRAFT',
+  Invalid = 'INVALID',
+  Published = 'PUBLISHED',
+  PublishError = 'PUBLISH_ERROR'
+}
+
+export type StatusFilterType = {
+  [key in StatusFilterValues]: boolean;
+};
+
 @Component({
   selector: 'app-ids-wc',
   templateUrl: './app.component.html',
@@ -9,47 +20,17 @@ import 'ids-enterprise-wc/enterprise-wc.js';
     './app.component.css'
   ]
 })
-export class AppComponent implements  AfterViewInit {
-  @ViewChild('popupmenuEl', { read: ElementRef }) popupmenuEl;
-  public name = 'Angular ' + VERSION.major;
+export class AppComponent {
+  readonly statuses = Object.values(StatusFilterValues)
 
-  list1 = Array.from({ length: 25 }, (_, index) => "item" + (index + 1));
+  selectedStatuses: StatusFilterType = {
+    [StatusFilterValues.Draft]: false,
+    [StatusFilterValues.Invalid]: false,
+    [StatusFilterValues.Published]: false,
+    [StatusFilterValues.PublishError]: false,
+  };
 
-  list = Array.from({ length: 25 }, (_, index) => "item" + (index + 1)).map((v) => {
-    return {
-      id: v,
-      text: v,
-      click: () => this.itemClick()
-    }
-  });
-  
-
-  listObj = [{
-    id: "edit-actions-group",
-    select: "none",
-    items: [...this.list]
-  }]
-
-  itemClick(): void {
-    this.list = this.list.splice(10);
-    this.listObj = [{
-      id: "edit-actions-group",
-      select: "none",
-      items: [...this.list]
-    }]
-
-    setTimeout(() => {
-      this.popupmenuEl.nativeElement.popup.align =  'top, left';
-      this.popupmenuEl.nativeElement.data = this.listObj
-    }, 500);
-  }
-
-  ngAfterViewInit(): void {
-    this.popupmenuEl.nativeElement.popup.align =  'top, left';
-    this.popupmenuEl.nativeElement.data = this.listObj;
-    this.popupmenuEl.nativeElement.addEventListener('selected', (e: any) => {
-      console.warn(`Item "${e.detail.elem.text}" was selected (id "${e.detail.elem.id}")`);
-      this.itemClick()
-    });
+  onFiltersChange(status: string): void {
+    this.selectedStatuses[status] = !this.selectedStatuses[status];
   }
 }

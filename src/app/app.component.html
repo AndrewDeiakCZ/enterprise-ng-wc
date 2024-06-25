@@ -1,18 +1,18 @@
-<div style="height: 80vh; width: 80vw; display: flex; align-items: center;">
-  <ids-menu-button
-  appearance="primary"
-  menu="my-menu"
-  >
-  <span>Long List</span>
-  </ids-menu-button>
-  <ids-popup-menu
-  id="my-menu"
-  trigger="click"
-  max-height="600px"
-  #popupmenuEl
-  >
-<!--        @for (item of list1; track item) {-->
-<!--            <ids-menu-item>{{item}}</ids-menu-item>-->
-<!--        }-->
-  </ids-popup-menu>
-</div>
+<ids-menu-button
+      icon="filter"
+      menu="filter-menu"
+      role="button"
+    >
+</ids-menu-button>
+<ids-popup-menu id="filter-menu">
+      <ids-menu-header>plan status</ids-menu-header>
+      <ids-menu-group keep-open="true" select="multiple">
+        @for (status of statuses; track status) {
+          <ids-menu-item
+            (click)="onFiltersChange(status)"
+            [attr.selected]="selectedStatuses[status]"
+            >{{ status }} <strong>{{selectedStatuses[status]}}</strong></ids-menu-item
+          >
+        }
+      </ids-menu-group>
+</ids-popup-menu>
